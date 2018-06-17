@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Detalhes do cadastro</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h3><a href="/colaboradores">Lista de colaboradores</a></h3>
+      <h1>Informações do colaborador</h1>
+      <table>
+        <tbody>
+          <tr>
+            <td>Nome</td>
+            <td>:</td>
+            <td><%= colaborador.nome %></td>
+          </tr>
+          <tr>
+            <td>Setor</td>
+            <td>:</td>
+            <td><%= colaborador.setor %></td>
+          </tr>
+          <tr>
+            <td>Função</td>
+            <td>:</td>
+            <td><%= colaborador.funcao %></td>
+          </tr>
+          <tr>
+            <td>CPF</td>
+            <td>:</td>
+            <td><%= colaborador.cpf %></td>
+          </tr>
+          <tr>
+            <td>Data de início</td>
+            <td>:</td>
+            <td><%= colaborador.dataInicio %></td>
+          </tr>
+          <tr>
+            <td>Celular corporativo</td>
+            <td>:</td>
+            <% if(colaborador.celularCorporativo = true){ %>
+              <td>Sim</td>
+            <% } else{ %>  
+              <td>Não</td>
+           <% } %>
+          </tr>
+        </tbody>
+      </table>
+      <h3><a href="/colaboradores/edit/<%= colaborador._id%>">Editar cadastro</a>
+      <form action="/colaboradores/delete/<%= colaborador._id%>" method="post">
+        <button type="submit">Excluir cadastro</button>
+      </form>
+    </div>
+  </body>
+</html>

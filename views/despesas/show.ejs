@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Detalhes do cadastro</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="novo">
+      <h3><a href="/despesas">Lista de despesas</a></h3>
+      <h1>Informações do despesa</h1>
+      <table>
+        <tbody>
+          <tr>
+            <td>Telefone</td>
+
+            <td><%= despesa.telefone %></td>
+          </tr>
+          <tr>
+            <td>Data da despesa</td>
+
+            <td><%= despesa.mesAno %></td>
+          </tr>
+          <tr>
+            <td>Valor da despesa</td>
+
+            <td>R$ <%= despesa.valorDespesa %></td>
+          </tr>
+        </tbody>
+      </table>
+      <h3><a href="/despesas/edit/<%= despesa._id%>">Editar cadastro</a>
+      <form action="/despesas/delete/<%= despesa._id%>" method="post">
+        <button type="submit">Excluir cadastro</button>
+      </form>
+    </div>
+  </body>
+</html>

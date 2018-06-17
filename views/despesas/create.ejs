@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cadastrar colaborador</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="novo">
+      <h3><a href="/despesas">Despesas para o número</a></h3>
+      <h1>Inserir novo registro</h1>
+      <form action="/despesas/save" method="post">
+        <table>
+          <tbody>
+            <tr>
+              <td>Número do celular</td>
+              <td><input type="text" name="telefone" /></td>
+            </tr>
+            <tr>
+              <td>Data da despesa</td>
+              <td><input type="date" name="mesAno" /></td>
+            </tr>
+            <tr>
+              <td>Valor da despesa</td>
+              <td><input type="text" name="valorDespesa" /></td>
+            </tr>
+            <tr>
+              <td colspan="2"><button type="submit">Salvar cadastro</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cadastrar colaborador</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h3><a href="/colaboradores">Lista de Colaboradores</a></h3>
+      <h1>Cadastrar novo colaborador</h1>
+      <form action="/colaboradores/save" method="post">
+        <table>
+          <tbody>
+            <tr>
+              <td>Nome completo</td>
+              <td><input type="text" name="nome" /></td>
+            </tr>
+            <tr>
+              <td>Setor</td>
+              <td><input type="text" name="setor" /></td>
+            </tr>
+            <tr>
+              <td>Função</td>
+              <td><input type="text" name="funcao" /></td>
+            </tr>
+            <tr>
+              <td>CPF</td>
+              <td><input type="text" name="cpf" /></td>
+            </tr>
+            <tr>
+              <td>Data de início</td>
+              <td><input type="date" name="dataInicio" /></td>
+            </tr>
+            <tr>
+              <td>Celular corporativo</td>
+              <td><input type="checkbox" name="celularCorporativo" /></td>
+            </tr>
+            <tr>
+              <td colspan="2"><button type="submit">Salvar cadastro</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </body>
+</html>
