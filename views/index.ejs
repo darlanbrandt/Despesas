@@ -1,35 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cadastro de despesas</title>
+    <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <div class="novo">
-      <h1>Lista de despesas do número [INSERIR RETORNO]</h1>
-      <% if(despesas.length>0) { %>
-      <table class="list-table">
-        <thead>
-          <tr>
-            <th>Número do telefone</th>
-            <th>Data da despesa</th>
-            <th>Valor da despesa</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <% for(var i=0; i<despesas.length;i++) { %>
-            <tr>
-              <td><a href="/despesas/show/<%= despesas[i]._id%>"><%= despesas[i].telefone%></a></td>
-              <td><%= despesas[i].mesAno%></td>
-              <td><%= despesas[i].valorDespesa%></td>
-            </tr>
-          <% } %>
-        </tbody>
-      </table>
-      <% } else { %>
-        <div>Não há nenhum cadastro.</div>
-      <% } %>
-    </div>
+    <h1><%= title %></h1>
+    <p>Bem vindo a <%= title %></p>
+    <h4><a href="/despesas">Despesa</a></h4>
   </body>
 </html>
