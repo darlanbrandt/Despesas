@@ -7,23 +7,19 @@
   <body>
     <div class="novo">
       <h3><a href="/despesas/create">Novo cadastro</a></h3>
-      <h1>Lista de despesas</h1>
-      <% if(despesas.length>0) { %>
+      <h1>Lista de telefones</h1>
+      <% if(telefones.length>0) { %>
       <table class="list-table">
         <thead>
           <tr>
             <th>Número do telefone</th>
-            <th>Data da despesa</th>
-            <th>Valor da despesa</th>
           </tr>
         </thead>
         <tbody>
 
-          <% for(var i=0; i<despesas.length;i++) { %>
+          <% for(var i=0; i<telefones.length;i++) { %>
             <tr>
-              <td><a href="/despesas/show/<%= despesas[i]._id%>"><%= despesas[i].telefone%></a></td>
-              <td><%= despesas[i].mesAno%></td>
-              <td><%= despesas[i].valorDespesa%></td>
+              <td><a href="/despesas/telefone/<%= telefones[i].telefoneEncoded%>"><%= telefones[i].telefone%></a></td>
             </tr>
           <% } %>
         </tbody>

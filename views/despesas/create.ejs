@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cadastrar colaborador</title>
+    <title>Cadastrar despesa</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
@@ -13,7 +13,13 @@
           <tbody>
             <tr>
               <td>Número do celular</td>
-              <td><input type="text" name="telefone" /></td>
+              <td>
+                  <select name="telefone">
+                      <% for(var i=0; i<celulares.length;i++) { %>
+                          <option value="<%= celulares[i].numero%>"><%= celulares[i].numero%></option>
+                      <% } %>
+                  </select> 
+              </td>
             </tr>
             <tr>
               <td>Data da despesa</td>

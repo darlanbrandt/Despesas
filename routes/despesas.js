@@ -8,6 +8,11 @@ router.get('/', function(req, res) {
 });
 
 // Get single despesa by id
+router.get('/telefone/:telefone', function(req, res) {
+  despesa.despesasTelefone(req, res);
+});
+
+// Get single despesa by id
 router.get('/show/:id', function(req, res) {
   despesa.show(req, res);
 });

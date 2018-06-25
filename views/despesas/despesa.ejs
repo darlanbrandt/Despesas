@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cadastro de despesas</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="novo">
+      <h1>Lista de despesas para o telefone <%= telefone %></h1>
+      <% if(despesas.length>0) { %>
+      <table class="list-table">
+        <thead>
+          <tr>
+            <th>Data da despesa</th>
+            <th>Valor da despesa</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <% for(var i=0; i<despesas.length;i++) { %>
+            <tr>
+              <td><%= despesas[i].mesAno%></td>
+              <td><%= despesas[i].valorDespesa%></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <% } else { %>
+        <div>Não há nenhum cadastro.</div>
+      <% } %>
+    </div>
+  </body>
+</html>
