@@ -49,7 +49,7 @@ despesaController.despesasTelefone = function(req, res) {
 
 // Cria nova despesa
 despesaController.create = function(req, res) {
-  fetch("http://localhost:4000/json/list")
+  fetch("https://gustavovieira.herokuapp.com/json/list")
   .then(result => result.json())
   .then(result => {
     res.render("../views/despesas/create", {celulares: result});
