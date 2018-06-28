@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro de linhas de celular (INE5646)</title>
+  <title>Gerenciamento de despesas de celular (INE5646)</title>
   <link href='https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
   <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
@@ -33,6 +33,7 @@
                   <tr>
                     <th>Data da despesa</th>
                     <th>Valor da despesa</th>
+                    <th>Ação</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -41,6 +42,7 @@
                     <tr>
                       <td><%= despesas[i].mesAno%></td>
                       <td><%= despesas[i].valorDespesa%></td>
+                      <td><a href="/despesas/show/<%= despesas[i]._id%>">Editar</a></td>
                     </tr>
                   <% } %>
                 </tbody>
@@ -67,7 +69,7 @@
       el: '#app',
       data: {
         fixed: true,
-        title: 'Cadastro de linhas de celular (INE5646)'     
+        title: 'Gerenciamento de despesas de celular (INE5646)'     
       },
 
     })

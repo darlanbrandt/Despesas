@@ -1,30 +1,109 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Editar cadastro do despesa</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <div class="novo">
-      <h3><a href="/despesas">Lista de despesas</a></h3>
-      <h1>Editar cadastro</h1>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de linhas de celular (INE5646)</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
+  <script type="text/javascript" src="/js/main.js"></script>
+  <script type="text/javascript" src="/js/jquery.mask.js"></script>
+  <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+  <link href="/stylesheets/styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="fundo">
+  <div id="app" >
+    <v-app>
+     <v-toolbar :fixed="fixed" app>
+      <v-spacer></v-spacer>
+      <a id="titulo" href="/"><v-toolbar-title v-text="title" class="fonte"></v-toolbar-title></a>
+      <v-spacer></v-spacer>
+    </v-toolbar>
+    <main class="fundo">
+      <div class="outerDiv">
+        <div class="innerDiv">
+          <center><h2>Alterar os dados da despesa cadastrada</h2>
+            <a href="/despesas"><strong>Voltar</strong></a>
+            <hr>          
+          <div class="espacoLateral">
       <form action="/despesas/update/<%= despesa._id%>" method="post">
-        <table>
-          <tbody>
-            <tr>
-              <td>Data da despesa</td>
-              <td><input type="date" name="mesAno"  value="<%= despesa.mesAno %>" /></td>
-            </tr>
-            <tr>
-              <td>Valor da despesa</td>
-              <td><input type="text" name="valorDespesa" value="<%= despesa.valorDespesa %>" /></td>
-            </tr>
-            <tr>
-              <td colspan="2"><button type="submit">Atualizar cadastro</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-    </div>
-  </body>
+
+        <table class="cadastro">
+            <tbody>
+              <tr>
+                <td>Número do celular</td>
+                <td>
+                    <select name="telefone" value="<%= despesa.telefone%>" v-model="telefone">
+                        <% for(var i=0; i<celulares.length;i++) { %>
+                            <option value="<%= celulares[i].numero%>"><%= celulares[i].numero%></option>
+                            <% } %>
+                    </select> 
+                </td>
+              </tr>
+              <tr>
+                <td>Data da despesa</td>
+                <td><input type="date" name="mesAno"  value="<%= despesa.mesAno %>" v-model="mesAno" />
+              </tr>
+              <tr>
+                <td>Valor da despesa</td>
+                <td><input type="text" name="valorDespesa" value="<%= despesa.valorDespesa %>" v-model="valorDespesa"/></td>
+              </tr>
+              <tr><center>
+                  <td colspan=2 id="padding"><center><button type="submit" class="post">Atualizar cadastro</button></center></td>
+                  <td></td></center>
+                </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </center>
+  </div>
+</div>
+</main>
+<footer>
+<span>&copy; 2018</span>
+</footer>
+</v-app>
+</div>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/jquery.mask.js"></script>
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+<script>
+Vue.component('page', {
+template: '#page'
+})
+new Vue({
+el: '#app',
+data: {
+errors: [],
+fixed: true,
+telefone: '<%= despesa.telefone %>',
+title: 'Gerenciamento de despesas de celular (INE5646)',
+mesAno: '<%= despesa.mesAno %>',
+valorDespesa: '<%= despesa.valorDespesa %>'
+},
+methods:{
+checkForm:function(e) {
+  this.errors = [];
+
+  if(!this.mesAno) this.errors.push("O campo Data da Despesa é obrigatório.");
+  if(!this.valorDespesa) this.errors.push("O campo Valor da Despesa é obrigatório."); 
+
+  if(!this.errors.length) return true;
+  e.preventDefault();
+}
+}
+
+})
+</script>
+</body>
+
 </html>
+
+        
