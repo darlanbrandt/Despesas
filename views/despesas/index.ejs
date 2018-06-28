@@ -50,7 +50,7 @@
         </div>
       </main>
       <footer>
-        <span>&copy; 2018</span>
+        <span>Darlan Brandt</span>
       </footer>
     </v-app>
   </div>
@@ -78,39 +78,4 @@
   </script>
 </body>
 
-</html>
-
-
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Cadastro de despesas</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <div class="novo">
-      <h3><a href="/despesas/create">Novo cadastro</a></h3>
-      <h1>Lista de telefones</h1>
-      <% if(telefones.length>0) { %>
-      <table class="list-table">
-        <thead>
-          <tr>
-            <th>Número do telefone</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <% for(var i=0; i<telefones.length;i++) { %>
-            <tr>
-              <td><a href="/despesas/telefone/<%= telefones[i].telefoneEncoded%>"><%= telefones[i].telefone%></a></td>
-            </tr>
-          <% } %>
-        </tbody>
-      </table>
-      <% } else { %>
-        <div>Não há nenhum cadastro.</div>
-      <% } %>
-    </div>
-  </body>
 </html>

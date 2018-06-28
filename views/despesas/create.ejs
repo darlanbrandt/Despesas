@@ -70,7 +70,7 @@
     </div>
   </main>
   <footer>
-    <span>&copy; 2018</span>
+    <span>Darlan Brandt</span>
   </footer>
 </v-app>
 </div>
@@ -108,47 +108,4 @@ new Vue({
 </script>
 </body>
 
-</html>
-
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Cadastrar despesa</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <div class="novo">
-      <h3><a href="/despesas">Despesas para o número</a></h3>
-      <h1>Inserir novo registro</h1>
-      <form action="/despesas/save" method="post">
-        <table>
-          <tbody>
-            <tr>
-              <td>Número do celular</td>
-              <td>
-                  <select name="telefone">
-                      <% for(var i=0; i<celulares.length;i++) { %>
-                          <option value="<%= celulares[i].numero%>"><%= celulares[i].numero%></option>
-                          <input type="hidden" value="<%= celulares[i].nome%>">
-                      <% } %>
-                  </select> 
-              </td>
-            </tr>
-            <tr>
-              <td>Data da despesa</td>
-              <td><input type="date" name="mesAno" /></td>
-            </tr>
-            <tr>
-              <td>Valor da despesa</td>
-              <td><input type="text" name="valorDespesa" /></td>
-            </tr>
-            <tr>
-              <td colspan="2"><button type="submit">Salvar cadastro</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-    </div>
-  </body>
 </html>
