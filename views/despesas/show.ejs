@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro de linhas de celular (INE5646)</title>
+  <title>Gerenciamento de despesas de celular (INE5646)</title>
   <link href='https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
   <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
@@ -20,50 +20,40 @@
     <v-app>
      <v-toolbar :fixed="fixed" app>
       <v-spacer></v-spacer>
-      <a id="titulo" href="/"><v-toolbar-title v-text="title"></v-toolbar-title></a>
+      <a id="titulo" href="/"><v-toolbar-title v-text="title" class="fonte"></v-toolbar-title></a>
       <v-spacer></v-spacer>
     </v-toolbar>
     <main class="fundo">
         <div class="outerDiv">
           <div class="innerDiv">
-            <center><h2>Informações da linha de celular</h2>
-              <a href="/celulares"><strong>Voltar</strong></a>
+            <center><h2>Detalhamento da despesa</h2>
+              <a href="/despesas"><strong>Voltar</strong></a>
               <hr>          
               <div>
-                <table class="cadastro">
+                <table>
                   <tbody>
                     <tr>
-                      <td>Número da linha</td>
-                      <td><%= celular.numero %></td>
+                      <td>Telefone</td>
+          
+                      <td><%= despesa.telefone %></td>
                     </tr>
                     <tr>
-                      <td>Colaborador responsável</td>
-                      <td><%= celular.nome %></td>
+                      <td>Data da despesa</td>
+          
+                      <td>{{dataCorrigida(mesAno)}}</td>
                     </tr>
                     <tr>
-                        <td>Plano de Voz contratado</td>
-                        <td><%= celular.planoVoz %></td>
-                      </tr>
-                    <tr>
-                      <td>Plano de Voz contratado</td>
-                      <td><%= celular.planoDados %></td>
+                      <td>Valor da despesa</td>
+          
+                      <td>R$ <%= despesa.valorDespesa %></td>
                     </tr>
                     <tr>
-                      <td>Aparelho utilizado</td>
-                      <td><%= celular.aparelho %></td>
+                      <td id="padding"><p class="post small2"><a href="/despesas/edit/<%= despesa._id%>">Editar despesa</a></p></td>
+                      <td><form action="/despesas/delete/<%= despesa._id%>" method="post">
+                        <button type="submit" class="post btnred">Excluir cadastro</button></td>
                     </tr>
-                    
-                    <tr>
-                      <td>IMEI</td>
-                      <td><%= celular.imei %></td>
-                    </tr>
-                    <tr>
-                        <td id="padding"><p class="post small2"><a href="/celulares/edit/<%= celular._id%>">Editar cadastro</a></p></td>
-                        <td><form action="/celulares/delete/<%= celular._id%>" method="post">
-                          <button type="submit" class="post btnred">Excluir cadastro</button></td>
-                      </tr>
                   </tbody>
-                </table>                  
+                </table>                 
                   </form>
                 </div>
               </center>
@@ -89,74 +79,19 @@ new Vue({
   data: {
     errors: [],
     fixed: true,
-    title: 'Cadastro de linhas de celular (INE5646)',
-    telefone: '',
-    nome: '',
-    planoVoz: '',
-    planoDados: '',
-    aparelho: '',
-    imei: ''
-  },
-  methods:{
-    checkForm:function(e) {
-      this.errors = [];
-      if(!this.numero) { this.errors.push("O campo Telefone é obrigatório."); }
-      else if(!this.validaNumero(this.numero)) {this.errors.push("Preencha no formato (00)00000-0000"); }
-      if(!this.nome) this.errors.push("O campo Nome é obrigatório."); 
-      if(!this.planoVoz) this.errors.push("O campo Plano de Voz é obrigatório.");
-      if(!this.planoDados) this.errors.push("O campo Plano de Dados é obrigatório."); 
-      if(!this.aparelho) this.errors.push("O campo Aparelho é obrigatório."); 
-      if(!this.imei) this.errors.push("O campo IMEI é obrigatório"); 
-
-      if(!this.errors.length) return true;
-      e.preventDefault();
+    mesAno: '<%= despesa.mesAno %>',
+    title: 'Gerenciamento de despesas de celular (INE5646)'
     },
-    validaNumero:function(numero) {
-      var re = /^(\(\d{2}\)\d{5}\-\d{4})$/;
-      return re.test(numero);
+    methods: {
+    dataCorrigida: function(value) {
+      var novaData = new Date(this.mesAno);
+      var mes=novaData.getMonth()+1;
+      var ano=novaData.getFullYear();
+      return novaData = mes + '/' + ano;
     }
   }
-
-})
+  })
 </script>
 </body>
 
-</html>
-
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Detalhes do cadastro</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <div class="novo">
-      <h3><a href="/despesas">Lista de despesas</a></h3>
-      <h1>Informações do despesa</h1>
-      <table>
-        <tbody>
-          <tr>
-            <td>Telefone</td>
-
-            <td><%= despesa.telefone %></td>
-          </tr>
-          <tr>
-            <td>Data da despesa</td>
-
-            <td><%= despesa.mesAno %></td>
-          </tr>
-          <tr>
-            <td>Valor da despesa</td>
-
-            <td>R$ <%= despesa.valorDespesa %></td>
-          </tr>
-        </tbody>
-      </table>
-      <h3><a href="/despesas/edit/<%= despesa._id%>">Editar cadastro</a>
-      <form action="/despesas/delete/<%= despesa._id%>" method="post">
-        <button type="submit">Excluir cadastro</button>
-      </form>
-    </div>
-  </body>
 </html>

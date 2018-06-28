@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro de linhas de celular (INE5646)</title>
+  <title>Gerenciamento de despesas de celular (INE5646)</title>
   <link href='https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
   <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
@@ -17,29 +17,27 @@
     <v-app>
      <v-toolbar :fixed="fixed" app>
       <v-spacer></v-spacer>
-      <a id="titulo" href="/"><v-toolbar-title v-text="title"></v-toolbar-title></a>
+      <a id="titulo" href="/"><v-toolbar-title v-text="title" class="fonte"></v-toolbar-title></a>
       <v-spacer></v-spacer>
     </v-toolbar>
     <main class="fundo">
       <div class="outerDiv">
         <div class="innerDiv">
           <center><h2>Lista de linhas de celular</h2>
-            <a href="/celulares/create"><strong>Novo cadastro</strong></a>
+            <a href="/despesas/create"><strong>Novo cadastro</strong></a>&nbsp;|&nbsp;<a href="/"><strong>Voltar</strong></a>
             <hr>
             <br/>
-            <% if(celulares.length>0) { %>
-            <table id="lista" class="cadastro">
+            <% if(telefones.length>0) { %>
+            <center><table id="lista" class="cadastro">
               <thead>
                   <tr>
-                      <th>Número do celular</th>
-                      <th>Colaborador responsável</th>
+                      <th>Número do telefone</th>
                     </tr>
               </thead>
               <tbody>
-                  <% for(var i=0; i<celulares.length;i++) { %>
+                <% for(var i=0; i<telefones.length;i++) { %>
                       <tr>
-                        <td><a href="/celulares/show/<%= celulares[i]._id%>"><%= celulares[i].numero%></a></td>
-                        <td><%= celulares[i].nome%></td>
+                        <td><a href="/despesas/telefone/<%= telefones[i].telefoneEncoded%>"><%= telefones[i].telefone%></a></td>
                       </tr>
                     <% } %>
                   </tbody>
@@ -66,7 +64,7 @@
       el: '#app',
       data: {
         fixed: true,
-        title: 'Cadastro de linhas de celular (INE5646)',
+        title: 'Gerenciamento de despesas de celular (INE5646)',
         cpf: '',
         nome: '',
         email: '',

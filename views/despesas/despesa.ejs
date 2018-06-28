@@ -17,36 +17,37 @@
     <v-app>
      <v-toolbar :fixed="fixed" app>
       <v-spacer></v-spacer>
-      <a id="titulo" href="/"><v-toolbar-title v-text="title"></v-toolbar-title></a>
+      <a id="titulo" href="/"><v-toolbar-title v-text="title" class="fonte"></v-toolbar-title></a>
       <v-spacer></v-spacer>
     </v-toolbar>
     <main class="fundo">
       <div class="outerDiv">
         <div class="innerDiv">
-          <center><h2>Lista de linhas de celular</h2>
-            <a href="/celulares/create"><strong>Novo cadastro</strong></a>
+          <center><h2>Lista de despesas para o número <%= telefone %></h2>
+            <a href="/despesas/create"><strong>Nova despesa</strong></a>&nbsp;|&nbsp;<a href="/"><strong>Voltar</strong></a>
             <hr>
             <br/>
-            <% if(celulares.length>0) { %>
-            <table id="lista" class="cadastro">
-              <thead>
+            <% if(despesas.length>0) { %>
+              <table class="list-table">
+                <thead>
                   <tr>
-                      <th>Número do celular</th>
-                      <th>Colaborador responsável</th>
+                    <th>Data da despesa</th>
+                    <th>Valor da despesa</th>
+                  </tr>
+                </thead>
+                <tbody>
+        
+                  <% for(var i=0; i<despesas.length;i++) { %>
+                    <tr>
+                      <td><%= despesas[i].mesAno%></td>
+                      <td><%= despesas[i].valorDespesa%></td>
                     </tr>
-              </thead>
-              <tbody>
-                  <% for(var i=0; i<celulares.length;i++) { %>
-                      <tr>
-                        <td><a href="/celulares/show/<%= celulares[i]._id%>"><%= celulares[i].numero%></a></td>
-                        <td><%= celulares[i].nome%></td>
-                      </tr>
-                    <% } %>
-                  </tbody>
-                </table>
-                <% } else { %>
-                  <div>Não há nenhum número cadastrado.</div>
-                <% } %>            
+                  <% } %>
+                </tbody>
+              </table>
+              <% } else { %>
+                <div>Não há nenhum cadastro.</div>
+              <% } %>        
           </center>
           </div>
         </div>
@@ -66,53 +67,11 @@
       el: '#app',
       data: {
         fixed: true,
-        title: 'Cadastro de linhas de celular (INE5646)',
-        cpf: '',
-        nome: '',
-        email: '',
-        setor: '',
-        funcao: '',
-        dataInicio: '',
-        celularCorporativo: ''      
+        title: 'Cadastro de linhas de celular (INE5646)'     
       },
 
     })
   </script>
 </body>
 
-</html>
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Cadastro de despesas</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <div class="novo">
-      <h1>Lista de despesas para o telefone <%= telefone %></h1>
-      <% if(despesas.length>0) { %>
-      <table class="list-table">
-        <thead>
-          <tr>
-            <th>Data da despesa</th>
-            <th>Valor da despesa</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <% for(var i=0; i<despesas.length;i++) { %>
-            <tr>
-              <td><%= despesas[i].mesAno%></td>
-              <td><%= despesas[i].valorDespesa%></td>
-            </tr>
-          <% } %>
-        </tbody>
-      </table>
-      <% } else { %>
-        <div>Não há nenhum cadastro.</div>
-      <% } %>
-    </div>
-    <h3><a href="/despesas">Voltar</a></h3>
-  </body>
 </html>

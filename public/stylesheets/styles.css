@@ -168,6 +168,12 @@ height: 40px;
 height: 100%;
 }
 
+.fonte {
+  font-size: 22pt;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+}
+
 .outerDiv {
 padding-top: 60px;
 padding-right: 20px;
@@ -185,7 +191,27 @@ font-family:"Roboto",sans-serif;
 font-weight: 300;
   line-height:1.8;
   font-size: 16px;
-  color: #222;
+  overflow-y: scroll;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #CCC; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #888; 
 }
 
 /*CSS Tabela*/
@@ -215,8 +241,6 @@ font-weight: 300;
   text-align: left;
   color: #222;
 }
-
-
 
 .campo .nomeCampo {
 width: 300px;

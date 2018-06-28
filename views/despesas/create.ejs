@@ -20,17 +20,17 @@
     <v-app>
      <v-toolbar :fixed="fixed" app>
       <v-spacer></v-spacer>
-      <a id="titulo" href="/"><v-toolbar-title v-text="title"></v-toolbar-title></a>
+      <a id="titulo" href="/"><v-toolbar-title v-text="title" class="fonte"></v-toolbar-title></a>
       <v-spacer></v-spacer>
     </v-toolbar>
     <main class="fundo">
       <div class="outerDiv">
         <div class="innerDiv">
           <center><h2>Insira os dados da linha a ser cadastrada</h2>
-            <a href="/celulares"><strong>Voltar</strong></a>
+            <a href="/despesas"><strong>Voltar</strong></a>
             <hr>          
           <div class="espacoLateral">
-          <form id="app" action="/celulares/save" @submit="checkForm"  method="post">
+          <form id="app" action="/despesas/save" @submit="checkForm"  method="post">
             <div id="message">
                 <p v-if="errors.length">
                     <ul>
@@ -40,43 +40,27 @@
               </div>
             <table class="cadastro">
               <tbody>
-                  <tr>
-                      <td id="nomeCampo">Número do celular</td>
-                      <td id="campo"><input type="text" name="numero" class="telefone" v-model="numero"/></td>
-                    </tr>
-                
-                    <tr>
-                        <td id="nomeCampo">Colaborador responsável</td>
-                        <td id="campo">
-                            <select name="nome" v-model="nome">
-                                <% for(var i=0; i<colaboradores.length;i++) { %>
-                                  <% if(colaboradores[i].celularCorporativo) { %>
-                                    <option value="<%= colaboradores[i].nome%>"><%= colaboradores[i].nome%></option>
-                                  <% } %> 
-                                <% } %>
-                            </select> 
-                        </td>
-                      </tr>
-                      <tr>
-                          <td id="nomeCampo">Plano de Voz Contratado</td>
-                          <td id="campo"><input type="text" name="planoVoz" v-model="planoVoz" /></td>
-                        </tr>
-                        <tr>
-                            <td id="nomeCampo">Plano de Dados Contratado</td>
-                            <td id="campo"><input type="text" name="planoDados" v-model="planoDados"/></td>
-                          </tr>
-                          <tr>
-                              <td id="nomeCampo">Aparelho utilizado</td>
-                              <td id="campo"><input type="text" name="aparelho" v-model="aparelho"/></td>
-                            </tr>
-                            <tr>
-                                <td id="nomeCampo">IMEI</td>
-                              <td id="campo"><input type="text" name="imei" v-model="imei"/></td>
-                            </tr>
-                            <tr><center>
-                                <td colspan=2 id="padding"><center><button type="submit" class="post">Enviar</button></center></td>
-                                <td></td></center>
-                              </tr>
+                <tr>
+                  <td>Número do celular</td>
+                  <td>
+                      <select name="telefone">
+                          <% for(var i=0; i<celulares.length;i++) { %>
+                              <option value="<%= celulares[i].numero%>"><%= celulares[i].numero%></option>
+                              <% } %>
+                      </select> 
+                  </td>
+                </tr>
+                <tr>
+                  <td>Data da despesa</td>
+                  <td><input type="date" name="mesAno" v-model="mesAno" /></td>
+                </tr>
+                <tr>
+                  <td>Valor da despesa</td>
+                  <td><input type="text" name="valorDespesa" v-model="valorDespesa" /></td>
+                </tr>
+                <tr>
+                  <td colspan=2 id="padding"><center><button type="submit" class="post">Enviar</button></center></td>
+                </tr>
               </tbody>
             </table>
             </form>
@@ -105,30 +89,18 @@ new Vue({
     errors: [],
     fixed: true,
     title: 'Cadastro de linhas de celular (INE5646)',
-    telefone: '',
-    nome: '',
-    planoVoz: '',
-    planoDados: '',
-    aparelho: '',
-    imei: ''
+    mesAno: '',
+    valorDespesa: ''
   },
   methods:{
     checkForm:function(e) {
       this.errors = [];
-      if(!this.numero) { this.errors.push("O campo Telefone é obrigatório."); }
-        else if(!this.validaNumero(this.numero)) {this.errors.push("Preencha no formato (00)00000-0000"); }
-      if(!this.nome) this.errors.push("O campo Nome é obrigatório."); 
-      if(!this.planoVoz) this.errors.push("O campo Plano de Voz é obrigatório.");
-      if(!this.planoDados) this.errors.push("O campo Plano de Dados é obrigatório."); 
-      if(!this.aparelho) this.errors.push("O campo Aparelho é obrigatório."); 
-      if(!this.imei) this.errors.push("O campo IMEI é obrigatório"); 
+
+      if(!this.mesAno) this.errors.push("O campo Data da Despesa é obrigatório.");
+      if(!this.valorDespesa) this.errors.push("O campo Valor da Despesa é obrigatório."); 
 
       if(!this.errors.length) return true;
       e.preventDefault();
-    },
-    validaNumero:function(numero) {
-      var re = /^(\(\d{2}\)\d{5}\-\d{4})$/;
-      return re.test(numero);
     }
   }
 
@@ -158,6 +130,7 @@ new Vue({
                   <select name="telefone">
                       <% for(var i=0; i<celulares.length;i++) { %>
                           <option value="<%= celulares[i].numero%>"><%= celulares[i].numero%></option>
+                          <input type="hidden" value="<%= celulares[i].nome%>">
                       <% } %>
                   </select> 
               </td>
