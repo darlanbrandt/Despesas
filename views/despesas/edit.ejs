@@ -36,12 +36,7 @@
             <tbody>
               <tr>
                 <td>Número do celular</td>
-                <td>
-                    <select name="telefone" value="<%= despesa.telefone%>" v-model="telefone">
-                        <% for(var i=0; i<celulares.length;i++) { %>
-                            <option value="<%= celulares[i].numero%>"><%= celulares[i].numero%></option>
-                            <% } %>
-                    </select> 
+                <td><input type="text" disabled name="telefone"  value="<%= despesa.telefone %>" v-model="telefone" />
                 </td>
               </tr>
               <tr>
