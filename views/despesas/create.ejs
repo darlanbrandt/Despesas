@@ -1,5 +1,146 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de linhas de celular (INE5646)</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
+  <script type="text/javascript" src="/js/main.js"></script>
+  <script type="text/javascript" src="/js/jquery.mask.js"></script>
+  <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+  <link href="/stylesheets/styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="fundo">
+  <div id="app" >
+    <v-app>
+     <v-toolbar :fixed="fixed" app>
+      <v-spacer></v-spacer>
+      <a id="titulo" href="/"><v-toolbar-title v-text="title"></v-toolbar-title></a>
+      <v-spacer></v-spacer>
+    </v-toolbar>
+    <main class="fundo">
+      <div class="outerDiv">
+        <div class="innerDiv">
+          <center><h2>Insira os dados da linha a ser cadastrada</h2>
+            <a href="/celulares"><strong>Voltar</strong></a>
+            <hr>          
+          <div class="espacoLateral">
+          <form id="app" action="/celulares/save" @submit="checkForm"  method="post">
+            <div id="message">
+                <p v-if="errors.length">
+                    <ul>
+                        <li v-for="error in errors">{{ error }}</li>
+                      </ul>
+                  </p>
+              </div>
+            <table class="cadastro">
+              <tbody>
+                  <tr>
+                      <td id="nomeCampo">Número do celular</td>
+                      <td id="campo"><input type="text" name="numero" class="telefone" v-model="numero"/></td>
+                    </tr>
+                
+                    <tr>
+                        <td id="nomeCampo">Colaborador responsável</td>
+                        <td id="campo">
+                            <select name="nome" v-model="nome">
+                                <% for(var i=0; i<colaboradores.length;i++) { %>
+                                  <% if(colaboradores[i].celularCorporativo) { %>
+                                    <option value="<%= colaboradores[i].nome%>"><%= colaboradores[i].nome%></option>
+                                  <% } %> 
+                                <% } %>
+                            </select> 
+                        </td>
+                      </tr>
+                      <tr>
+                          <td id="nomeCampo">Plano de Voz Contratado</td>
+                          <td id="campo"><input type="text" name="planoVoz" v-model="planoVoz" /></td>
+                        </tr>
+                        <tr>
+                            <td id="nomeCampo">Plano de Dados Contratado</td>
+                            <td id="campo"><input type="text" name="planoDados" v-model="planoDados"/></td>
+                          </tr>
+                          <tr>
+                              <td id="nomeCampo">Aparelho utilizado</td>
+                              <td id="campo"><input type="text" name="aparelho" v-model="aparelho"/></td>
+                            </tr>
+                            <tr>
+                                <td id="nomeCampo">IMEI</td>
+                              <td id="campo"><input type="text" name="imei" v-model="imei"/></td>
+                            </tr>
+                            <tr><center>
+                                <td colspan=2 id="padding"><center><button type="submit" class="post">Enviar</button></center></td>
+                                <td></td></center>
+                              </tr>
+              </tbody>
+            </table>
+            </form>
+          </div>
+        </center>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <span>&copy; 2018</span>
+  </footer>
+</v-app>
+</div>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/jquery.mask.js"></script>
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+<script>
+Vue.component('page', {
+  template: '#page'
+})
+new Vue({
+  el: '#app',
+  data: {
+    errors: [],
+    fixed: true,
+    title: 'Cadastro de linhas de celular (INE5646)',
+    telefone: '',
+    nome: '',
+    planoVoz: '',
+    planoDados: '',
+    aparelho: '',
+    imei: ''
+  },
+  methods:{
+    checkForm:function(e) {
+      this.errors = [];
+      if(!this.numero) { this.errors.push("O campo Telefone é obrigatório."); }
+        else if(!this.validaNumero(this.numero)) {this.errors.push("Preencha no formato (00)00000-0000"); }
+      if(!this.nome) this.errors.push("O campo Nome é obrigatório."); 
+      if(!this.planoVoz) this.errors.push("O campo Plano de Voz é obrigatório.");
+      if(!this.planoDados) this.errors.push("O campo Plano de Dados é obrigatório."); 
+      if(!this.aparelho) this.errors.push("O campo Aparelho é obrigatório."); 
+      if(!this.imei) this.errors.push("O campo IMEI é obrigatório"); 
+
+      if(!this.errors.length) return true;
+      e.preventDefault();
+    },
+    validaNumero:function(numero) {
+      var re = /^(\(\d{2}\)\d{5}\-\d{4})$/;
+      return re.test(numero);
+    }
+  }
+
+})
+</script>
+</body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html>
   <head>
     <title>Cadastrar despesa</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />

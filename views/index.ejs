@@ -1,10 +1,70 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><a href="/despesas">Acessar despesas</a></h14>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento de despesas de celular (INE5646)</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
+  <script type="text/javascript" src="/js/main.js"></script>
+  <script type="text/javascript" src="/js/jquery.mask.js"></script>
+  <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+  <link href="/stylesheets/styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="fundo">
+  <div id="app" >
+    <v-app>
+     <v-toolbar :fixed="fixed" app>
+      <v-spacer></v-spacer>
+      <a id="titulo" href="/"><v-toolbar-title v-text="title"></v-toolbar-title></a>
+      <v-spacer></v-spacer>
+    </v-toolbar>
+    <main class="fundo">
+      <div class="outerDiv">
+        <div class="innerDiv">
+          <center><h2>Módulo de gerenciamento de despesas de celular corporativo</h2>
+            <br>
+            <hr>          
+            <div>
+                <table class="indexTable">
+                    <tr>
+                      <th>Registro de despesas de celular</th>
+                      <th>Listar linhas de celular com despesas cadastradas</th>
+                    </tr>
+                    <tr>
+                      <td><p>Para efetuar o cadastro de uma nova linha de celular, <br>clique no botão abaixo</p><br>
+                      <center><p class="post small"><a href="/despesas/create">Efetuar novo registro</a></p></center>
+                      <td><p>Para acessar a lista de linhas de celular com despesas cadastradas, <br>clique no botão abaixo</p><br>
+                      <center><p class="post small"><a href="/despesas/">Visualizar linhas</a></center>
+                   </tr>
+              </table>
+            </div>
+          </center>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <span>&copy; 2018</span>
+    </footer>
+  </v-app>
+</div>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+<script>
+Vue.component('page', {
+  template: '#page'
+})
+new Vue({
+  el: '#app',
+  data: {
+    fixed: true,
+    title: 'Gerenciamento de despesas de celular (INE5646)'
+  }
+})
+</script>
+</body>
 </html>

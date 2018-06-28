@@ -1,5 +1,89 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de linhas de celular (INE5646)</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
+  <link href="/stylesheets/styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="fundo">
+  <div id="app" >
+    <v-app>
+     <v-toolbar :fixed="fixed" app>
+      <v-spacer></v-spacer>
+      <a id="titulo" href="/"><v-toolbar-title v-text="title"></v-toolbar-title></a>
+      <v-spacer></v-spacer>
+    </v-toolbar>
+    <main class="fundo">
+      <div class="outerDiv">
+        <div class="innerDiv">
+          <center><h2>Lista de linhas de celular</h2>
+            <a href="/celulares/create"><strong>Novo cadastro</strong></a>
+            <hr>
+            <br/>
+            <% if(celulares.length>0) { %>
+            <table id="lista" class="cadastro">
+              <thead>
+                  <tr>
+                      <th>Número do celular</th>
+                      <th>Colaborador responsável</th>
+                    </tr>
+              </thead>
+              <tbody>
+                  <% for(var i=0; i<celulares.length;i++) { %>
+                      <tr>
+                        <td><a href="/celulares/show/<%= celulares[i]._id%>"><%= celulares[i].numero%></a></td>
+                        <td><%= celulares[i].nome%></td>
+                      </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+                <% } else { %>
+                  <div>Não há nenhum número cadastrado.</div>
+                <% } %>            
+          </center>
+          </div>
+        </div>
+      </main>
+      <footer>
+        <span>&copy; 2018</span>
+      </footer>
+    </v-app>
+  </div>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+  <script>
+    Vue.component('page', {
+      template: '#page'
+    })
+    new Vue({
+      el: '#app',
+      data: {
+        fixed: true,
+        title: 'Cadastro de linhas de celular (INE5646)',
+        cpf: '',
+        nome: '',
+        email: '',
+        setor: '',
+        funcao: '',
+        dataInicio: '',
+        celularCorporativo: ''      
+      },
+
+    })
+  </script>
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html>
   <head>
     <title>Cadastro de despesas</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -29,5 +113,6 @@
         <div>Não há nenhum cadastro.</div>
       <% } %>
     </div>
+    <h3><a href="/despesas">Voltar</a></h3>
   </body>
 </html>
